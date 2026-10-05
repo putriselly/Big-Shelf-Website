@@ -1,0 +1,592 @@
+/* ===== Reset & base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #ffffff;
+  color: #1a1a2e;
+  min-height: 100vh;
+  padding-left: 220px; /* reserves space for the fixed sidebar on every page */
+}
+
+/* ===== Sidebar (fixed so it works the same on every page, however many
+   sections that page has after it) ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #0a1155;
+}
+
+.sidemenu {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+}
+
+.sidemenu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 20px 24px;
+  line-height: 1.4;
+  border-left: 4px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.sidemenu a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Active page indicator — lit up based on a class on <body>, e.g.
+   <body class="page-dashboard">. Add the matching class per page
+   (see note) so the correct link highlights on each page. */
+.page-dashboard .sidemenu a.dashboard,
+.page-inventory .sidemenu a.inven,
+.page-sales .sidemenu a.sales,
+.page-transaksi .sidemenu a.trans {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: #ff4d4d;
+}
+
+/* ===== Page header (Inventory, etc.) ===== */
+body > h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #14142b;
+  line-height: 1.5;
+  margin: 56px 0 32px;
+}
+
+/* ===== Toolbar row: search box (left) + add-product (right) ===== */
+.toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 32px 24px;
+}
+
+.searcproduk,
+.tambahproduk,
+.filterkategori,
+.pilihtanggal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e9ebf0;
+  border: 1.5px solid #9aa3b8;
+  border-radius: 4px;
+  padding: 10px 16px;
+}
+
+.filterkategori {
+  width: fit-content;
+  margin: 0 32px 24px;
+}
+
+/* When filterkategori sits inside a .toolbar-row alongside another box
+   (e.g. Riwayat Transaksi's date picker), let the row's own gap/justify
+   handle spacing instead of this standalone margin */
+.toolbar-row .filterkategori {
+  margin: 0;
+}
+
+.pilihtanggal input[type="date"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: #1a1a2e;
+}
+
+.searcproduk img,
+.tambahproduk img,
+.filterkategori img {
+  width: 16px;
+  height: 16px;
+}
+
+.searcproduk input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  width: 180px;
+}
+
+.filterkategori select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+}
+
+.tambahproduk a {
+  color: #14142b;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ===== Main content ===== */
+main {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-content: start;
+}
+
+/* Dashboard's stat cards */
+.pendapatan,
+.transaksi,
+.produk {
+  grid-column: span 4;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1.5px solid #9aa3b8;
+  box-shadow: 0 1px 3px rgba(10, 17, 85, 0.06);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pendapatan h3,
+.transaksi h3,
+.produk h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444a5a;
+}
+
+.pendapatan h2,
+.transaksi h2,
+.produk h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.pendapatan span,
+.produk span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.pendapatan select,
+.transaksi select,
+.chartpendapatan select {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #eef1f6;
+  border: 1px solid #d7dbe4;
+  border-radius: 4px;
+  color: #1a1a2e;
+}
+
+/* Dashboard charts row */
+.chartpendapatan,
+.produkterjual {
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1.5px solid #9aa3b8;
+  box-shadow: 0 1px 3px rgba(10, 17, 85, 0.06);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartpendapatan {
+  grid-column: span 7;
+}
+
+.produkterjual {
+  grid-column: span 5;
+}
+
+.chartpendapatan h3,
+.produkterjual h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444a5a;
+  margin-bottom: 12px;
+}
+
+.chartpendapatan canvas,
+.produkterjual canvas {
+  width: 100% !important;
+  height: 200px !important;
+}
+
+/* Dashboard's <section> wrapper around its transaction table */
+main > section:last-child {
+  grid-column: 1 / -1;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1.5px solid #9aa3b8;
+  box-shadow: 0 1px 3px rgba(10, 17, 85, 0.06);
+  padding: 4px;
+}
+
+/* Inventory: table sits directly in <main>, wrapped in a soft grey card
+   that spans the full content width, matching the toolbar row above it */
+main:has(> table) {
+  grid-column: 1 / -1;
+  background: #e9ebf0;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* ===== Tables (Dashboard's transaction table, Inventory's product table) ===== */
+table {
+  grid-column: 1 / -1;
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+table, th, td {
+  border: 1.5px solid #9aa3b8;
+}
+
+th {
+  background: #0a1155;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+td {
+  padding: 16px;
+  font-size: 13px;
+  color: #1a1a2e;
+}
+
+/* Inventory action buttons */
+td button {
+  font-size: 12px;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: 1.5px solid #9aa3b8;
+  border-radius: 4px;
+  background: #eef1f6;
+  color: #1a1a2e;
+  cursor: pointer;
+}
+
+td button:hover {
+  background: #dfe3ec;
+}
+
+/* ===== Tambah Produk form ===== */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 20px 64px;
+}
+
+.form-row h3 {
+  width: 110px;
+  flex-shrink: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a2e;
+}
+
+.form-row input {
+  width: 130px;
+  padding: 6px 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  border: 1px solid #1a1a2e;
+  border-radius: 2px;
+  background: #ffffff;
+}
+
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin: 32px 0 32px 64px;
+}
+
+.btn-simpan,
+.btn-batal {
+  padding: 14px 40px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-simpan {
+  background: #1656d6;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-simpan:hover {
+  background: #1247b3;
+}
+
+.btn-batal {
+  background: #ffffff;
+  color: #1656d6;
+  border: 2px solid #1656d6;
+}
+
+.btn-batal:hover {
+  background: #eaf0fd;
+}
+
+/* ===== Point of Sales ===== */
+main:has(.produk-section) {
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+}
+
+.produk-section {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.produk-section .searcproduk {
+  margin: 0 0 16px;
+}
+
+.produk-section .filterkategori {
+  margin: 0 0 20px;
+  width: fit-content;
+}
+
+.daftar-produk {
+  border: 1.5px solid #9aa3b8;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  min-height: 200px;
+}
+
+.produk-card {
+  aspect-ratio: 1;
+  border: 1.5px solid #1a1a2e;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.produk-card:hover {
+  border-color: #1656d6;
+}
+
+.produk-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cart panel */
+.keranjang {
+  grid-column: span 1;
+  border: 1.5px solid #9aa3b8;
+  border-radius: 4px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header-keranjang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1.5px solid #9aa3b8;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.icon-keranjang {
+  font-size: 20px;
+}
+
+.daftar-keranjang {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.keranjang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid #d7dbe4;
+  font-size: 14px;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-controls button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #9aa3b8;
+  background: #eef1f6;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qty-controls button:hover {
+  background: #dfe3ec;
+}
+
+.pembayaran {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.subtotal,
+.kembalian {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.uang-pembeli {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.uang-pembeli input {
+  padding: 8px 10px;
+  border: 1px solid #1a1a2e;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#prosesPembayaran {
+  background: #0a1155;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#prosesPembayaran:hover {
+  background: #141d70;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  body {
+    padding-left: 0;
+    padding-top: 60px;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .sidemenu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px;
+  }
+
+  .sidemenu a {
+    border-left: none;
+    border-bottom: 4px solid transparent;
+  }
+
+  .page-dashboard .sidemenu a.dashboard,
+  .page-inventory .sidemenu a.inven,
+  .page-sales .sidemenu a.sales,
+  .page-transaksi .sidemenu a.trans {
+    border-bottom-color: #ff4d4d;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .pendapatan,
+  .transaksi,
+  .produk,
+  .chartpendapatan,
+  .produkterjual {
+    grid-column: 1;
+  }
+
+  .toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0 16px 16px;
+  }
+
+  .searcproduk,
+  .tambahproduk,
+  .filterkategori {
+    width: 100%;
+    margin: 0 0 12px !important;
+  }
+
+  .form-row,
+  .form-actions {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .form-row input {
+    flex: 1;
+  }
+
+  main:has(.produk-section) {
+    grid-template-columns: 1fr;
+  }
+}

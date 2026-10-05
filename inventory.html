@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>inventory</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="page-inventory">
+        <aside class="sidebar">
+            <nav class="sidemenu">
+                <a class="dashboard" href="index.html">DASHBOARD<br>(HOME PAGE)</a>
+                <a class="inven" href="inventory.html">INVENTORY</a>
+                <a class="sales" href="pointofsales.html">POINT OF SALES</a>
+                <a class="trans" href="riwayattransaksi.html">RIWAYAT TRANSAKSI</a>
+            </nav>
+        </aside>
+        <h1>MANAJEMEN PRODUK<br>(INVENTORY)</h1>
+        <div class="toolbar-row">
+            <div class="searcproduk">
+                <img src="glass.png"/>
+                <input id="search" placeholder="cari nama produk">
+            </div>
+            <div class="tambahproduk">
+                <img src="plus.png"/>
+                <a href="tambahproduk.html">tambah produk</a>
+            </div>
+        </div>
+        <div class="filterkategori">
+            <img src="filter.png"/>
+            <select id="Filter">
+                <option value="semua">semua</option>
+                <option value="baju">baju</option>
+                <option value="celana">celana</option>
+                <option value="sepatu">sepatu</option>
+            </select>
+        </div>
+        <main>
+            <table border="1" id="tabel">
+                <tr>
+                    <th>nama barang</th>
+                    <th>kategori</th>
+                    <th>jumlah stok</th>
+                    <th>harga barang</th>
+                    <th>edit</th>
+                </tr>
+            </table>
+        </main>
+        <script src="inventory.js"></script>
+    </body>
+</html>

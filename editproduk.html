@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit produk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <nav class="sidemenu">
+            <a class="dashboard" href="index.html">DASHBOARD<br>(HOME PAGE)</a>
+            <a class="inven" href="inventory.html">INVENTORY</a>
+            <a class="sales" href="pointofsales.html">POINT OF SALES</a>
+            <a class="trans" href="riwayattransaksi.html">RIWAYAT TRANSAKSI</a>
+        </nav>
+    </aside>
+
+    <h1>EDIT PRODUK</h1>
+
+    <div class="form-row">
+        <h3>nama produk :</h3>
+        <input type="text" id="namaProduk" placeholder="nama produk">
+    </div>
+
+    <div class="form-row">
+        <h3>kategori :</h3>
+        <select id="kategori">
+            <option value="1">baju</option>
+            <option value="2">celana</option>
+            <option value="3">sepatu</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <h3>harga jual :</h3>
+        <input type="number" id="hargaJual" placeholder="harga jual">
+    </div>
+
+    <div class="form-row">
+        <h3>harga beli :</h3>
+        <input type="number" id="hargaBeli" placeholder="harga beli">
+    </div>
+
+    <div class="form-row">
+        <h3>jumlah stok :</h3>
+        <input type="number" id="stok" placeholder="jumlah stok">
+    </div>
+
+    <div class="form-actions">
+        <button type="button" class="btn-simpan" id="btnSimpan">SIMPAN</button>
+        <button type="button" class="btn-batal" id="btnBatal">BATAL</button>
+    </div>
+
+    <script src="editproduk.js"></script>
+
+</body>
+</html>
